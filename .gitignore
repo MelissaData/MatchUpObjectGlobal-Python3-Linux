@@ -1,0 +1,10 @@
+__pycache__/
+Data/
+
+libmdGlobalParse.so
+libmdMatchup.so
+*.hash
+
+
+MelissaUpdater
+# mdMatchup_pythoncode.py
