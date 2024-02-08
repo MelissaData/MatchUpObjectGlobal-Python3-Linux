@@ -5,6 +5,8 @@ libmdGlobalParse.so
 libmdMatchup.so
 *.hash
 
+MelissaMatchupGlobalSampleInput_output.txt
+MelissaMatchupUSSampleInput_output.txt
 
 MelissaUpdater
 # mdMatchup_pythoncode.py

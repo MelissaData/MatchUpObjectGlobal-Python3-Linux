@@ -8,7 +8,7 @@ Please feel free to copy or embed this code to your own project. Happy coding!
 
 For the latest Melissa MatchUp Object Global release notes, please visit: https://releasenotes.melissa.com/on-premise-api/matchup-object-global/
 
-For further details, please visit: https://wiki.melissadata.com/index.php?title=MatchUp_Object:Reference
+For further details, please visit: https://docs.melissa.com/on-premise-api/matchup-object-global/matchup-object-global-quickstart.html
 
 The console will ask the user for:
 
@@ -24,7 +24,7 @@ And return
 
 - Linux 64-bit Python 3.8.7
 - Ubuntu 20.04.05 LTS
-- Melissa data files for 2023-Q4
+- Melissa data files for 2024-Q1
 
 ## Required File(s) and Programs
 
