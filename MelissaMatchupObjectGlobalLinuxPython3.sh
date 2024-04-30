@@ -10,41 +10,52 @@ NC='\033[0m' # No Color
 
 ######################### Parameters ##########################
 
-file=""
-origin=""
+globalFile=""
+usFile=""
+dataPath=""
 license=""
 quiet="false"
 
 while [ $# -gt 0 ] ; do
   case $1 in
-    -g | --global) 
-        global="$2"
+    --global) 
+        globalFile="$2"
 
-        if [ "$global" == "-u" ] || [ "$global" == "--us" ] || [ "$global" == "-l" ] || [ "$global" == "--license" ] || [ "$global" == "-q" ] || [ "$global" == "--quiet" ] || [ -z "$global" ];
+        if [ "$globalFile" == "--us" ] || [ "$globalFile" == "--dataPath" ] || [ "$globalFile" == "--license" ] || [ "$globalFile" == "--quiet" ] || [ -z "$globalFile" ];
         then
             printf "${RED}Error: Missing an argument for parameter \'global\'.${NC}\n"  
             exit 1
         fi  
         ;;
-	-u | --us) 
-        us="$2"
+	--us) 
+        usFile="$2"
 
-        if [ "$us" == "-g" ] || [ "$us" == "--global" ] || [ "$us" == "-l" ] || [ "$us" == "--license" ] || [ "$us" == "-q" ] || [ "$us" == "--quiet" ] || [ -z "$us" ];
+        if [ "$usFile" == "--global" ] || [ "$usFile" == "--dataPath" ] || [ "$usFile" == "--license" ] || [ "$usFile" == "--quiet" ] || [ -z "$usFile" ];
         then
             printf "${RED}Error: Missing an argument for parameter \'global\'.${NC}\n"  
             exit 1
         fi  
         ;;	
-    -l | --license) 
+    --dataPath) 
+        dataPath="$2"
+        
+        if [ "$dataPath" == "--license" ] || [ "$dataPath" == "--quiet" ] || [ "$dataPath" == "--global" ] || [ "$dataPath" == "--us" ] || [ -z "$dataPath" ];
+        then
+            printf "${RED}Error: Missing an argument for parameter \'dataPath\'.${NC}\n"  
+            exit 1
+        fi  
+        ;;
+
+    --license) 
         license="$2"
 
-        if [ "$license" == "-o" ] || [ "$license" == "--origin" ] || [ "$license" == "-f" ] || [ "$license" == "--file" ] || [ "$license" == "-q" ] || [ "$license" == "--quiet" ] || [ -z "$license" ];
+        if [ "$license" == "--global" ] || [ "$license" == "--us" ] || [ "$license" == "--dataPath" ] || [ "$license" == "--quiet" ] || [ -z "$license" ];
         then
             printf "${RED}Error: Missing an argument for parameter \'license\'.${NC}\n"  
             exit 1
         fi    
         ;;
-    -q | --quiet) 
+    --quiet) 
         quiet="true" 
         ;;
   esac
@@ -52,28 +63,31 @@ while [ $# -gt 0 ] ; do
 done
 
 
-
 ######################### Config ###########################
 
 
-RELEASE_VERSION='2024.Q1'
+RELEASE_VERSION='2024.Q2'
 ProductName="GLOBAL_MU_DATA"
 
 # Uses the location of the .sh file 
-# Modify this if you want to use 
 CurrentPath=$(pwd)
 ProjectPath="$CurrentPath/MelissaMatchupObjectGlobalLinuxPython3"
-BuildPath="$ProjectPath"
-DataPath="$ProjectPath/Data"
 
-if [ ! -d $DataPath ];
+if [ -z "$dataPath" ];
 then
-    mkdir $DataPath
+    DataPath="$ProjectPath/Data"
+else
+    DataPath=$dataPath
 fi
 
-if [ ! -d $BuildPath ];
+if [ ! -d "$DataPath" ] && [ "$DataPath" == "$ProjectPath/Data" ];
 then
-    mkdir $BuildPath
+    mkdir "$DataPath"
+elif [ ! -d "$DataPath" ] && [ "$DataPath" != "$ProjectPath/Data" ];
+then
+    printf "\nData file path does not exist. Please check that your file path is correct.\n"
+    printf "\nAborting program, see above.\n"
+    exit 1
 fi
 
 # Config variables for download file(s)
@@ -125,28 +139,28 @@ DownloadSO()
     # Check for quiet mode
     if [ $quiet == "true" ];
     then
-        ./MelissaUpdater/MelissaUpdater file --filename $Config1_FileName --release_version $Config1_ReleaseVersion --license $1 --os $Config1_OS --compiler $Config1_Compiler --architecture $Config1_Architecture --type $Config1_Type --target_directory $BuildPath &> /dev/null
+        ./MelissaUpdater/MelissaUpdater file --filename $Config1_FileName --release_version $Config1_ReleaseVersion --license $1 --os $Config1_OS --compiler $Config1_Compiler --architecture $Config1_Architecture --type $Config1_Type --target_directory $ProjectPath &> /dev/null
         if [ $? -ne 0 ];
         then
             printf "\nCannot run Melissa Updater. Please check your license string!\n"
             exit 1
         fi
 
-        ./MelissaUpdater/MelissaUpdater file --filename $Config2_FileName --release_version $Config2_ReleaseVersion --license $1 --os $Config2_OS --compiler $Config2_Compiler --architecture $Config2_Architecture --type $Config2_Type --target_directory $BuildPath &> /dev/null
+        ./MelissaUpdater/MelissaUpdater file --filename $Config2_FileName --release_version $Config2_ReleaseVersion --license $1 --os $Config2_OS --compiler $Config2_Compiler --architecture $Config2_Architecture --type $Config2_Type --target_directory $ProjectPath &> /dev/null
         if [ $? -ne 0 ];
         then
             printf "\nCannot run Melissa Updater. Please check your license string!\n"
             exit 1
         fi
     else
-        ./MelissaUpdater/MelissaUpdater file --filename $Config1_FileName --release_version $Config1_ReleaseVersion --license $1 --os $Config1_OS --compiler $Config1_Compiler --architecture $Config1_Architecture --type $Config1_Type --target_directory $BuildPath 
+        ./MelissaUpdater/MelissaUpdater file --filename $Config1_FileName --release_version $Config1_ReleaseVersion --license $1 --os $Config1_OS --compiler $Config1_Compiler --architecture $Config1_Architecture --type $Config1_Type --target_directory $ProjectPath 
         if [ $? -ne 0 ];
         then
             printf "\nCannot run Melissa Updater. Please check your license string!\n"
             exit 1
         fi
    
-        ./MelissaUpdater/MelissaUpdater file --filename $Config2_FileName --release_version $Config2_ReleaseVersion --license $1 --os $Config2_OS --compiler $Config2_Compiler --architecture $Config2_Architecture --type $Config2_Type --target_directory $BuildPath 
+        ./MelissaUpdater/MelissaUpdater file --filename $Config2_FileName --release_version $Config2_ReleaseVersion --license $1 --os $Config2_OS --compiler $Config2_Compiler --architecture $Config2_Architecture --type $Config2_Type --target_directory $ProjectPath 
         if [ $? -ne 0 ];
         then
             printf "\nCannot run Melissa Updater. Please check your license string!\n"
@@ -184,10 +198,10 @@ DownloadWrapper()
 
 CheckSOs() 
 {
-    if [ ! -f $BuildPath/$Config1_FileName ];
+    if [ ! -f $ProjectPath/$Config1_FileName ];
     then
         echo "false"
-    elif [ ! -f $BuildPath/$Config2_FileName ];
+    elif [ ! -f $ProjectPath/$Config2_FileName ];
     then    
         echo "false"
     fi
@@ -216,18 +230,25 @@ then
   exit 1
 fi
 
+# Get data file path (either from parameters or user input)
+if [ "$DataPath" = "$ProjectPath/Data" ]; then
+    printf "Please enter your data files path directory if you have already downloaded the release zip.\nOtherwise, the data files will be downloaded using the Melissa Updater (Enter to skip): "
+    read dataPathInput
+
+    if [ ! -z "$dataPathInput" ]; then  
+        if [ ! -d "$dataPathInput" ]; then  
+            printf "\nData file path does not exist. Please check that your file path is correct.\n"
+            printf "\nAborting program, see above.\n"
+            exit 1
+        else
+            DataPath=$dataPathInput
+        fi
+    fi
+fi
+
 # Use Melissa Updater to download data file(s) 
 # Download data file(s) 
-DownloadDataFiles $license      # comment out this line if using Release
-
-# # Set data file(s) path
-# #DataPath=""      # uncomment this line and change to your Release data file(s) directory 
-
-# #if [ ! -d $DataPath ]; # uncomment this section of code if you are using your own Release data file(s) directory
-# #then
-#     #printf "\nData path is invalid!\n"
-#     #exit 1
-# #fi
+DownloadDataFiles $license # Comment out this line if using own release
 
 # # Download SO(s)
 DownloadSO $license 
@@ -254,17 +275,17 @@ printf "\nAll file(s) have been downloaded/updated!\n"
 # # Start program
 
 # # Run Project
-if [ -z "$global" ] && [ -z "$us" ];
+if [ -z "$globalFile" ] && [ -z "$usFile" ];
 then
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./MelissaMatchupObjectGlobalLinuxPython3
 
     cd MelissaMatchupObjectGlobalLinuxPython3
-    python3 $BuildPath/MelissaMatchupObjectGlobalLinuxPython3.py --license $license  --dataPath $DataPath
+    python3 $ProjectPath/MelissaMatchupObjectGlobalLinuxPython3.py --license $license  --dataPath $DataPath
     cd ..
 else
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./MelissaMatchupObjectGlobalLinuxPython3
 
     cd MelissaMatchupObjectGlobalLinuxPython3
-    python3 $BuildPath/MelissaMatchupObjectGlobalLinuxPython3.py --license $license --dataPath $DataPath --global "$global" --us "$us"
+    python3 $ProjectPath/MelissaMatchupObjectGlobalLinuxPython3.py --license $license --dataPath $DataPath --global "$globalFile" --us "$usFile"
     cd ..
 fi
