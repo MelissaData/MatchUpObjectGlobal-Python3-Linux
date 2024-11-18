@@ -23,7 +23,7 @@ And return
 ## Tested Environments
 
 - Linux 64-bit Python 3.8.7, Ubuntu 20.04.05 LTS
-- Melissa data files for 2024-Q3
+- Melissa data files for 2024-Q4
 
 ## Required File(s) and Programs
 
@@ -62,8 +62,8 @@ If you see the version number then you have installed Python3 and set up your en
 
 #### Download this project
 ```
-$ git clone https://github.com/MelissaData/MatchUpObjectGlobal-Python3-Linux
-$ cd MatchUpObjectGlobal-Python3-Linux
+git clone https://github.com/MelissaData/MatchUpObjectGlobal-Python3-Linux
+cd MatchUpObjectGlobal-Python3-Linux
 ```
 
 #### Set up Melissa Updater 
@@ -132,26 +132,26 @@ Parameters:
 When you have modified the script to match your data location, let's run the script. There are two modes:
 - Interactive 
 
-	The script will prompt the user for a txt file, then use the provided txt file to test MatchUp Object Global.  For example:
-    ```
-    $ ./MelissaMatchupObjectGlobalLinuxPython3.sh
-    ```
-    For quiet mode:
-    ```
-    $ ./MelissaMatchupObjectGlobalLinuxPython3.sh -quiet
-    ```
+  The script will prompt the user for a txt file, then use the provided txt file to test MatchUp Object Global.  For example:
+  ```
+  ./MelissaMatchupObjectGlobalLinuxPython3.sh
+  ```
+  For quiet mode:
+  ```
+  ./MelissaMatchupObjectGlobalLinuxPython3.sh -quiet
+  ```
 - Command Line 
 
-    You can pass a global txt file, us txt file, and a license string into the ```--global```, ```--us```, and ```--license``` parameters respectively to test MatchUp Object Global. For example:
-    ```
-    $ ./MelissaMatchupObjectGlobalLinuxPython3.sh --global "MelissaMatchupGlobalSampleInput.txt" --us "MelissaMatchupUSSampleInput.txt"
-    $ ./MelissaMatchupObjectGlobalLinuxPython3.sh --global "MelissaMatchupGlobalSampleInput.txt" --us "MelissaMatchupUSSampleInput.txt" --license "<your_license_string>"
-    ```
-    For quiet mode:
-    ```
-    $ ./MelissaMatchupObjectGlobalLinuxPython3.sh --global "MelissaMatchupGlobalSampleInput.txt" --us "MelissaMatchupUSSampleInput.txt" --quiet
-    $ ./MelissaMatchupObjectGlobalLinuxPython3.sh --global "MelissaMatchupGlobalSampleInput.txt" --us "MelissaMatchupUSSampleInput.txt" --license "<your_license_string>" --quiet
-    ```
+  You can pass a global txt file, us txt file, and a license string into the ```--global```, ```--us```, and ```--license``` parameters respectively to test MatchUp Object Global. For example:
+  ```
+  ./MelissaMatchupObjectGlobalLinuxPython3.sh --global "MelissaMatchupGlobalSampleInput.txt" --us "MelissaMatchupUSSampleInput.txt"
+  ./MelissaMatchupObjectGlobalLinuxPython3.sh --global "MelissaMatchupGlobalSampleInput.txt" --us "MelissaMatchupUSSampleInput.txt" --license "<your_license_string>"
+  ```
+  For quiet mode:
+  ```
+  ./MelissaMatchupObjectGlobalLinuxPython3.sh --global "MelissaMatchupGlobalSampleInput.txt" --us "MelissaMatchupUSSampleInput.txt" --quiet
+  ./MelissaMatchupObjectGlobalLinuxPython3.sh --global "MelissaMatchupGlobalSampleInput.txt" --us "MelissaMatchupUSSampleInput.txt" --license "<your_license_string>" --quiet
+  ```
 This is the expected output of a successful setup for interactive mode:
 
 ![alt text](/screenshots/output.PNG)
