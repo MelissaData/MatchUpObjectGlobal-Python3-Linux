@@ -719,7 +719,7 @@ class mdMUMatchcodeComponent(object):
 		return lib.mdMUMatchcodeComponentGetLabel(self.I).decode('utf-8')
 
 	def SetLabel(self, Label):
-		lib.mdMUMatchcodeComponentSetLabel(self.I, Label.encode('utf-8'))
+		lib.mdMUMatchcodeComponentSetLabel(self.I, (Label or '').encode('utf-8'))
 
 	def GetWordCount(self):
 		return lib.mdMUMatchcodeComponentGetWordCount(self.I)
@@ -794,25 +794,25 @@ class mdMUMatchcodeComponent(object):
 		return lib.mdMUMatchcodeComponentGetComponentAbbreviation(self.I).decode('utf-8')
 
 	def ParseComponentDescription(self, Value):
-		return MatchcodeComponentType(lib.mdMUMatchcodeComponentParseComponentDescription(self.I, Value.encode('utf-8')))
+		return MatchcodeComponentType(lib.mdMUMatchcodeComponentParseComponentDescription(self.I, (Value or '').encode('utf-8')))
 
 	def GetSizeDescription(self):
 		return lib.mdMUMatchcodeComponentGetSizeDescription(self.I).decode('utf-8')
 
 	def ParseSizeDescription(self, Value):
-		return lib.mdMUMatchcodeComponentParseSizeDescription(self.I, Value.encode('utf-8'))
+		return lib.mdMUMatchcodeComponentParseSizeDescription(self.I, (Value or '').encode('utf-8'))
 
 	def ParseWordCountDescription(self, Value):
-		return lib.mdMUMatchcodeComponentParseWordCountDescription(self.I, Value.encode('utf-8'))
+		return lib.mdMUMatchcodeComponentParseWordCountDescription(self.I, (Value or '').encode('utf-8'))
 
 	def GetStartDescription(self):
 		return lib.mdMUMatchcodeComponentGetStartDescription(self.I).decode('utf-8')
 
 	def ParseStartDescription(self, Value):
-		return MatchcodeStart(lib.mdMUMatchcodeComponentParseStartDescription(self.I, Value.encode('utf-8')))
+		return MatchcodeStart(lib.mdMUMatchcodeComponentParseStartDescription(self.I, (Value or '').encode('utf-8')))
 
 	def ParseStartPosDescription(self, Value):
-		return lib.mdMUMatchcodeComponentParseStartPosDescription(self.I, Value.encode('utf-8'))
+		return lib.mdMUMatchcodeComponentParseStartPosDescription(self.I, (Value or '').encode('utf-8'))
 
 	def GetFuzzyDescription(self, Decorated):
 		return lib.mdMUMatchcodeComponentGetFuzzyDescription(self.I, Decorated).decode('utf-8')
@@ -821,16 +821,16 @@ class mdMUMatchcodeComponent(object):
 		return lib.mdMUMatchcodeComponentGetFuzzyDescriptionFromEnum(self.I, MatchcodeFuzzy(Value).value).decode('utf-8')
 
 	def ParseFuzzyDescription(self, Value):
-		return MatchcodeFuzzy(lib.mdMUMatchcodeComponentParseFuzzyDescription(self.I, Value.encode('utf-8')))
+		return MatchcodeFuzzy(lib.mdMUMatchcodeComponentParseFuzzyDescription(self.I, (Value or '').encode('utf-8')))
 
 	def ParseNearDescription(self, Value):
-		return lib.mdMUMatchcodeComponentParseNearDescription(self.I, Value.encode('utf-8'))
+		return lib.mdMUMatchcodeComponentParseNearDescription(self.I, (Value or '').encode('utf-8'))
 
 	def GetFieldMatchDescription(self):
 		return lib.mdMUMatchcodeComponentGetFieldMatchDescription(self.I).decode('utf-8')
 
 	def ParseFieldMatchDescription(self, Value):
-		return MatchcodeFieldMatch(lib.mdMUMatchcodeComponentParseFieldMatchDescription(self.I, Value.encode('utf-8')))
+		return MatchcodeFieldMatch(lib.mdMUMatchcodeComponentParseFieldMatchDescription(self.I, (Value or '').encode('utf-8')))
 
 	def GetSwapDescription(self):
 		return lib.mdMUMatchcodeComponentGetSwapDescription(self.I).decode('utf-8')
@@ -896,10 +896,10 @@ class mdMUMatchcodeComponent(object):
 		return lib.mdMUMatchcodeComponentGetFuzzyEnum(self.I).decode('utf-8')
 
 	def SetReserved(self, Property, Value):
-		lib.mdMUMatchcodeComponentSetReserved(self.I, Property.encode('utf-8'), Value.encode('utf-8'))
+		lib.mdMUMatchcodeComponentSetReserved(self.I, (Property or '').encode('utf-8'), (Value or '').encode('utf-8'))
 
 	def GetReserved(self, Property):
-		return lib.mdMUMatchcodeComponentGetReserved(self.I, Property.encode('utf-8')).decode('utf-8')
+		return lib.mdMUMatchcodeComponentGetReserved(self.I, (Property or '').encode('utf-8')).decode('utf-8')
 
 # mdMUMatchcodeList Enumerations
 class ProgramStatus(Enum):
@@ -1154,7 +1154,7 @@ class mdMUMatchcodeList(object):
 		lib.mdMUMatchcodeListDestroy(self.I)
 
 	def SetPathToMatchUpFiles(self, Path):
-		lib.mdMUMatchcodeListSetPathToMatchUpFiles(self.I, Path.encode('utf-8'))
+		lib.mdMUMatchcodeListSetPathToMatchUpFiles(self.I, (Path or '').encode('utf-8'))
 
 	def InitializeDataFiles(self):
 		return ProgramStatus(lib.mdMUMatchcodeListInitializeDataFiles(self.I))
@@ -1423,7 +1423,7 @@ class mdMUMatchcode(object):
 		lib.mdMUMatchcodeDestroy(self.I)
 
 	def SetPathToMatchUpFiles(self, Path):
-		lib.mdMUMatchcodeSetPathToMatchUpFiles(self.I, Path.encode('utf-8'))
+		lib.mdMUMatchcodeSetPathToMatchUpFiles(self.I, (Path or '').encode('utf-8'))
 
 	def InitializeDataFiles(self):
 		return ProgramStatus(lib.mdMUMatchcodeInitializeDataFiles(self.I))
@@ -1432,13 +1432,13 @@ class mdMUMatchcode(object):
 		return lib.mdMUMatchcodeGetInitializeErrorString(self.I).decode('utf-8')
 
 	def FindMatchcode(self, Matchcode):
-		return lib.mdMUMatchcodeFindMatchcode(self.I, Matchcode.encode('utf-8'))
+		return lib.mdMUMatchcodeFindMatchcode(self.I, (Matchcode or '').encode('utf-8'))
 
 	def GetMatchcodeName(self):
 		return lib.mdMUMatchcodeGetMatchcodeName(self.I).decode('utf-8')
 
 	def SetDescription(self, Description):
-		lib.mdMUMatchcodeSetDescription(self.I, Description.encode('utf-8'))
+		lib.mdMUMatchcodeSetDescription(self.I, (Description or '').encode('utf-8'))
 
 	def GetDescription(self):
 		return lib.mdMUMatchcodeGetDescription(self.I).decode('utf-8')
@@ -1468,7 +1468,7 @@ class mdMUMatchcode(object):
 		return MatchcodeStatus(lib.mdMUMatchcodeDeleteMatchcodeItem(self.I, Pos))
 
 	def RenameMatchcode(self, Name):
-		return lib.mdMUMatchcodeRenameMatchcode(self.I, Name.encode('utf-8'))
+		return lib.mdMUMatchcodeRenameMatchcode(self.I, (Name or '').encode('utf-8'))
 
 	def DeleteMatchcode(self):
 		return lib.mdMUMatchcodeDeleteMatchcode(self.I)
@@ -1477,10 +1477,10 @@ class mdMUMatchcode(object):
 		lib.mdMUMatchcodeSave(self.I)
 
 	def SaveToFile(self, Path):
-		lib.mdMUMatchcodeSaveToFile(self.I, Path.encode('utf-8'))
+		lib.mdMUMatchcodeSaveToFile(self.I, (Path or '').encode('utf-8'))
 
 	def CreateNewMatchcode(self, Matchcode):
-		return lib.mdMUMatchcodeCreateNewMatchcode(self.I, Matchcode.encode('utf-8'))
+		return lib.mdMUMatchcodeCreateNewMatchcode(self.I, (Matchcode or '').encode('utf-8'))
 
 	def GetRuleDescription(self, Rule_, Abbreviated_):
 		return lib.mdMUMatchcodeGetRuleDescription(self.I, Rule_, Abbreviated_).decode('utf-8')
@@ -1501,7 +1501,7 @@ class mdMUMatchcode(object):
 		return lib.mdMUMatchcodeGetInputMappingLabel(self.I, MatchcodeMapping(Mapping_).value).decode('utf-8')
 
 	def ParseInputMappingLabel(self, Value_):
-		return MatchcodeMapping(lib.mdMUMatchcodeParseInputMappingLabel(self.I, Value_.encode('utf-8')))
+		return MatchcodeMapping(lib.mdMUMatchcodeParseInputMappingLabel(self.I, (Value_ or '').encode('utf-8')))
 
 	def GetBestInputMappingType(self, Target_):
 		return MatchcodeMapping(lib.mdMUMatchcodeGetBestInputMappingType(self.I, MatchcodeMappingTarget(Target_).value))
@@ -1516,10 +1516,10 @@ class mdMUMatchcode(object):
 		return lib.mdMUMatchcodeGetInputMappingEnum(self.I).decode('utf-8')
 
 	def SetReserved(self, Property, Value):
-		lib.mdMUMatchcodeSetReserved(self.I, Property.encode('utf-8'), Value.encode('utf-8'))
+		lib.mdMUMatchcodeSetReserved(self.I, (Property or '').encode('utf-8'), (Value or '').encode('utf-8'))
 
 	def GetReserved(self, Property):
-		return lib.mdMUMatchcodeGetReserved(self.I, Property.encode('utf-8')).decode('utf-8')
+		return lib.mdMUMatchcodeGetReserved(self.I, (Property or '').encode('utf-8')).decode('utf-8')
 
 # mdMUReadWrite Enumerations
 class ProgramStatus(Enum):
@@ -1774,13 +1774,13 @@ class mdMUReadWrite(object):
 		lib.mdMUReadWriteDestroy(self.I)
 
 	def SetPathToMatchUpFiles(self, Path):
-		lib.mdMUReadWriteSetPathToMatchUpFiles(self.I, Path.encode('utf-8'))
+		lib.mdMUReadWriteSetPathToMatchUpFiles(self.I, (Path or '').encode('utf-8'))
 
 	def SetMatchcodeName(self, MatchcodeName):
-		lib.mdMUReadWriteSetMatchcodeName(self.I, MatchcodeName.encode('utf-8'))
+		lib.mdMUReadWriteSetMatchcodeName(self.I, (MatchcodeName or '').encode('utf-8'))
 
 	def SetKeyFile(self, KeyFile):
-		lib.mdMUReadWriteSetKeyFile(self.I, KeyFile.encode('utf-8'))
+		lib.mdMUReadWriteSetKeyFile(self.I, (KeyFile or '').encode('utf-8'))
 
 	def InitializeDataFiles(self):
 		return ProgramStatus(lib.mdMUReadWriteInitializeDataFiles(self.I))
@@ -1789,13 +1789,13 @@ class mdMUReadWrite(object):
 		return lib.mdMUReadWriteGetInitializeErrorString(self.I).decode('utf-8')
 
 	def SetLicenseString(self, License):
-		return lib.mdMUReadWriteSetLicenseString(self.I, License.encode('utf-8'))
+		return lib.mdMUReadWriteSetLicenseString(self.I, (License or '').encode('utf-8'))
 
 	def SetMaximumCharacterSize(self, size):
 		lib.mdMUReadWriteSetMaximumCharacterSize(self.I, size)
 
 	def SetEncoding(self, encodeName):
-		return lib.mdMUReadWriteSetEncoding(self.I, encodeName.encode('utf-8'))
+		return lib.mdMUReadWriteSetEncoding(self.I, (encodeName or '').encode('utf-8'))
 
 	def GetBuildNumber(self):
 		return lib.mdMUReadWriteGetBuildNumber(self.I).decode('utf-8')
@@ -1822,16 +1822,16 @@ class mdMUReadWrite(object):
 		lib.mdMUReadWriteClearFields(self.I)
 
 	def AddField(self, Field):
-		lib.mdMUReadWriteAddField(self.I, Field.encode('utf-8'))
+		lib.mdMUReadWriteAddField(self.I, (Field or '').encode('utf-8'))
 
 	def BuildKey(self):
 		lib.mdMUReadWriteBuildKey(self.I)
 
 	def SetKey(self, Key):
-		lib.mdMUReadWriteSetKey(self.I, Key.encode('utf-8'))
+		lib.mdMUReadWriteSetKey(self.I, (Key or '').encode('utf-8'))
 
 	def SetUserInfo(self, UserInfo):
-		lib.mdMUReadWriteSetUserInfo(self.I, UserInfo.encode('utf-8'))
+		lib.mdMUReadWriteSetUserInfo(self.I, (UserInfo or '').encode('utf-8'))
 
 	def WriteRecord(self):
 		lib.mdMUReadWriteWriteRecord(self.I)
@@ -1879,10 +1879,10 @@ class mdMUReadWrite(object):
 		lib.mdMUReadWriteSetGroupSorting(self.I, bGroupSorting)
 
 	def SetReserved(self, Property, Value):
-		lib.mdMUReadWriteSetReserved(self.I, Property.encode('utf-8'), Value.encode('utf-8'))
+		lib.mdMUReadWriteSetReserved(self.I, (Property or '').encode('utf-8'), (Value or '').encode('utf-8'))
 
 	def GetReserved(self, Property):
-		return lib.mdMUReadWriteGetReserved(self.I, Property.encode('utf-8')).decode('utf-8')
+		return lib.mdMUReadWriteGetReserved(self.I, (Property or '').encode('utf-8')).decode('utf-8')
 
 # mdMUIncremental Enumerations
 class ProgramStatus(Enum):
@@ -2137,16 +2137,16 @@ class mdMUIncremental(object):
 		lib.mdMUIncrementalDestroy(self.I)
 
 	def SetPathToMatchUpFiles(self, Path):
-		lib.mdMUIncrementalSetPathToMatchUpFiles(self.I, Path.encode('utf-8'))
+		lib.mdMUIncrementalSetPathToMatchUpFiles(self.I, (Path or '').encode('utf-8'))
 
 	def SetMatchcodeName(self, MatchcodeName):
-		lib.mdMUIncrementalSetMatchcodeName(self.I, MatchcodeName.encode('utf-8'))
+		lib.mdMUIncrementalSetMatchcodeName(self.I, (MatchcodeName or '').encode('utf-8'))
 
 	def SetMustExist(self, bMustExist):
 		lib.mdMUIncrementalSetMustExist(self.I, bMustExist)
 
 	def SetKeyFile(self, KeyFile):
-		lib.mdMUIncrementalSetKeyFile(self.I, KeyFile.encode('utf-8'))
+		lib.mdMUIncrementalSetKeyFile(self.I, (KeyFile or '').encode('utf-8'))
 
 	def InitializeDataFiles(self):
 		return ProgramStatus(lib.mdMUIncrementalInitializeDataFiles(self.I))
@@ -2155,13 +2155,13 @@ class mdMUIncremental(object):
 		return lib.mdMUIncrementalGetInitializeErrorString(self.I).decode('utf-8')
 
 	def SetLicenseString(self, License):
-		return lib.mdMUIncrementalSetLicenseString(self.I, License.encode('utf-8'))
+		return lib.mdMUIncrementalSetLicenseString(self.I, (License or '').encode('utf-8'))
 
 	def SetMaximumCharacterSize(self, size):
 		lib.mdMUIncrementalSetMaximumCharacterSize(self.I, size)
 
 	def SetEncoding(self, encodeName):
-		return lib.mdMUIncrementalSetEncoding(self.I, encodeName.encode('utf-8'))
+		return lib.mdMUIncrementalSetEncoding(self.I, (encodeName or '').encode('utf-8'))
 
 	def GetBuildNumber(self):
 		return lib.mdMUIncrementalGetBuildNumber(self.I).decode('utf-8')
@@ -2188,16 +2188,16 @@ class mdMUIncremental(object):
 		lib.mdMUIncrementalClearFields(self.I)
 
 	def AddField(self, Field):
-		lib.mdMUIncrementalAddField(self.I, Field.encode('utf-8'))
+		lib.mdMUIncrementalAddField(self.I, (Field or '').encode('utf-8'))
 
 	def BuildKey(self):
 		lib.mdMUIncrementalBuildKey(self.I)
 
 	def SetKey(self, Key):
-		lib.mdMUIncrementalSetKey(self.I, Key.encode('utf-8'))
+		lib.mdMUIncrementalSetKey(self.I, (Key or '').encode('utf-8'))
 
 	def SetUserInfo(self, UserInfo):
-		lib.mdMUIncrementalSetUserInfo(self.I, UserInfo.encode('utf-8'))
+		lib.mdMUIncrementalSetUserInfo(self.I, (UserInfo or '').encode('utf-8'))
 
 	def MatchRecord(self):
 		lib.mdMUIncrementalMatchRecord(self.I)
@@ -2236,10 +2236,10 @@ class mdMUIncremental(object):
 		return lib.mdMUIncrementalGetFuzzyPercentage(self.I)
 
 	def SetReserved(self, Property, Value):
-		lib.mdMUIncrementalSetReserved(self.I, Property.encode('utf-8'), Value.encode('utf-8'))
+		lib.mdMUIncrementalSetReserved(self.I, (Property or '').encode('utf-8'), (Value or '').encode('utf-8'))
 
 	def GetReserved(self, Property):
-		return lib.mdMUIncrementalGetReserved(self.I, Property.encode('utf-8')).decode('utf-8')
+		return lib.mdMUIncrementalGetReserved(self.I, (Property or '').encode('utf-8')).decode('utf-8')
 
 	def BeginTransaction(self):
 		return lib.mdMUIncrementalBeginTransaction(self.I)
@@ -2503,10 +2503,10 @@ class mdMUHybrid(object):
 		lib.mdMUHybridDestroy(self.I)
 
 	def SetPathToMatchUpFiles(self, Path):
-		lib.mdMUHybridSetPathToMatchUpFiles(self.I, Path.encode('utf-8'))
+		lib.mdMUHybridSetPathToMatchUpFiles(self.I, (Path or '').encode('utf-8'))
 
 	def SetMatchcodeName(self, MatchcodeName):
-		lib.mdMUHybridSetMatchcodeName(self.I, MatchcodeName.encode('utf-8'))
+		lib.mdMUHybridSetMatchcodeName(self.I, (MatchcodeName or '').encode('utf-8'))
 
 	def InitializeDataFiles(self):
 		return ProgramStatus(lib.mdMUHybridInitializeDataFiles(self.I))
@@ -2515,13 +2515,13 @@ class mdMUHybrid(object):
 		return lib.mdMUHybridGetInitializeErrorString(self.I).decode('utf-8')
 
 	def SetLicenseString(self, License):
-		return lib.mdMUHybridSetLicenseString(self.I, License.encode('utf-8'))
+		return lib.mdMUHybridSetLicenseString(self.I, (License or '').encode('utf-8'))
 
 	def SetMaximumCharacterSize(self, size):
 		lib.mdMUHybridSetMaximumCharacterSize(self.I, size)
 
 	def SetEncoding(self, encodeName):
-		return lib.mdMUHybridSetEncoding(self.I, encodeName.encode('utf-8'))
+		return lib.mdMUHybridSetEncoding(self.I, (encodeName or '').encode('utf-8'))
 
 	def GetBuildNumber(self):
 		return lib.mdMUHybridGetBuildNumber(self.I).decode('utf-8')
@@ -2548,7 +2548,7 @@ class mdMUHybrid(object):
 		lib.mdMUHybridClearFields(self.I)
 
 	def AddField(self, Field):
-		lib.mdMUHybridAddField(self.I, Field.encode('utf-8'))
+		lib.mdMUHybridAddField(self.I, (Field or '').encode('utf-8'))
 
 	def BuildKey(self):
 		lib.mdMUHybridBuildKey(self.I)
@@ -2563,7 +2563,7 @@ class mdMUHybrid(object):
 		return lib.mdMUHybridGetClusterSize(self.I)
 
 	def CompareKeys(self, Key1, Key2):
-		return lib.mdMUHybridCompareKeys(self.I, Key1.encode('utf-8'), Key2.encode('utf-8'))
+		return lib.mdMUHybridCompareKeys(self.I, (Key1 or '').encode('utf-8'), (Key2 or '').encode('utf-8'))
 
 	def GetResults(self):
 		return lib.mdMUHybridGetResults(self.I).decode('utf-8')
@@ -2572,7 +2572,7 @@ class mdMUHybrid(object):
 		return lib.mdMUHybridGetFuzzyPercentage(self.I)
 
 	def SetReserved(self, Property, Value):
-		lib.mdMUHybridSetReserved(self.I, Property.encode('utf-8'), Value.encode('utf-8'))
+		lib.mdMUHybridSetReserved(self.I, (Property or '').encode('utf-8'), (Value or '').encode('utf-8'))
 
 	def GetReserved(self, Property):
-		return lib.mdMUHybridGetReserved(self.I, Property.encode('utf-8')).decode('utf-8')
+		return lib.mdMUHybridGetReserved(self.I, (Property or '').encode('utf-8')).decode('utf-8')
